@@ -409,7 +409,6 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
         encoder_hidden_states_image: Optional[torch.Tensor] = None,
         return_dict: bool = True,
         attention_kwargs: Optional[Dict[str, Any]] = None,
-        apply_target_noise_only: str = None,
     ) -> Union[torch.Tensor, Dict[str, torch.Tensor]]:
         if attention_kwargs is not None:
             attention_kwargs = attention_kwargs.copy()
@@ -437,13 +436,6 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
         hidden_states = self.patch_embedding(hidden_states)
         hidden_states = hidden_states.flatten(2).transpose(1, 2)
 
-        if apply_target_noise_only:
-            zero_temb, zero_timestep_proj, _, _ = self.condition_embedder(
-                torch.zeros_like(timestep), encoder_hidden_states, encoder_hidden_states_image
-            )
-        else:
-            zero_temb, zero_timestep_proj = None, None
-
         temb, timestep_proj, encoder_hidden_states, encoder_hidden_states_image = self.condition_embedder(
             timestep, encoder_hidden_states, encoder_hidden_states_image
         )
@@ -451,28 +443,6 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
 
         if encoder_hidden_states_image is not None:
             encoder_hidden_states = torch.concat([encoder_hidden_states_image, encoder_hidden_states], dim=1)
-
-        if apply_target_noise_only:
-            if apply_target_noise_only == "back":
-                raise NotImplementedError("back is not implemented")
-            elif apply_target_noise_only == "front":
-                print("apply_target_noise_only: front")
-                # 첫 번째 프레임 위치 식별
-                target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) == 0
-            elif apply_target_noise_only == "front-long":
-                print("apply_target_noise_only: front-long")
-                # 첫 번째부터 6번째 프레임까지 위치 식별
-                target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) < 6
-            else:
-                raise ValueError(f"apply_target_noise_only must be either 'back', 'front', or 'front-long', but got {apply_target_noise_only}")
-                
-            target_frame_mask = target_frame_indices.view(1, -1, 1, 1, 1).expand(batch_size, -1, 1, height // self.config.patch_size, width // self.config.patch_size)
-            target_frame_mask = target_frame_mask.reshape(batch_size, -1)  # 패치 임베딩 형태로 변환
-        else:
-            print(f"apply_target_noise_only: {apply_target_noise_only}")
-            target_frame_mask = None
-
-        breakpoint()
 
         # 4. Transformer blocks
         if torch.is_grad_enabled() and self.gradient_checkpointing:

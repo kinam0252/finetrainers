@@ -295,11 +295,16 @@ class WanModelSpecification(ModelSpecification):
 
         noise = torch.zeros_like(latents).normal_(generator=generator)
         noisy_latents = FF.flow_match_xt(latents, noise, sigmas)
-
         if apply_target_noise_only == "front":
-            noisy_latents[:, 0] = latents[:, 0]
-        elif apply_target_noise_only == "front-long":
-            noisy_latents[:, :6] = latents[:, :6]
+            print("[DEBUG] front noise applied")
+            noisy_latents[:, :, 0] = latents[:, :, 0]
+        elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
+            print("[DEBUG] front-long noise applied")
+            noisy_latents[:, :, :6] = latents[:, :, :6]
+        elif apply_target_noise_only == "front-long-none-F81":
+            noisy_latents[:, :, :10] = latents[:, :, :10]
+        else:
+            print("[DEBUG] full noise applied")
 
         timesteps = (sigmas.flatten() * 1000.0).long()
 

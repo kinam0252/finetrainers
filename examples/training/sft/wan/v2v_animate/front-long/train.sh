@@ -15,7 +15,7 @@ BACKEND="ptd"
 
 # In this setting, I'm using 2 GPUs on a 4-GPU node for training
 NUM_GPUS=1
-CUDA_VISIBLE_DEVICES="0"
+CUDA_VISIBLE_DEVICES="2"
 
 # Check the JSON files for the expected JSON format
 TRAINING_DATASET_CONFIG="examples/training/sft/wan/v2v_animate/training.json"
@@ -57,7 +57,7 @@ dataset_cmd=(
 
 # Dataloader arguments
 dataloader_cmd=(
-  --dataloader_num_workers 4
+  --dataloader_num_workers 0
 )
 
 # Diffusion arguments
@@ -78,7 +78,7 @@ training_cmd=(
   --target_modules "blocks.*(to_q|to_k|to_v|to_out.0)"
   --gradient_accumulation_steps 1
   --gradient_checkpointing
-  --checkpointing_steps 1000
+  --checkpointing_steps 2000
   --checkpointing_limit 3
   # --resume_from_checkpoint 3000
   # --enable_slicing

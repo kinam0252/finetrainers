@@ -1,9 +1,9 @@
 {
   "datasets": [
     {
-      "data_root": "/home/nas4_user/kinamkim/video-in-context-lora/dataset/style/dataset",
+      "data_root": "/home/nas4_user/kinamkim/video-in-context-lora/dataset/V2V_animate/dataset",
       "dataset_type": "video",
-      "id_token": "STYLE",
+      "id_token": "ANIMATE",
       "video_resolution_buckets": [
         [49, 480, 480]
       ],

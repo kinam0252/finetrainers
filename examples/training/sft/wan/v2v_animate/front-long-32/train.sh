@@ -15,12 +15,12 @@ BACKEND="ptd"
 
 # In this setting, I'm using 2 GPUs on a 4-GPU node for training
 NUM_GPUS=1
-CUDA_VISIBLE_DEVICES="7"
+CUDA_VISIBLE_DEVICES="0"
 
 # Check the JSON files for the expected JSON format
-TRAINING_DATASET_CONFIG="examples/training/sft/wan/style/training.json"
-VALIDATION_DATASET_FILE="examples/training/sft/wan/style/validation.json"
-OUTPUT_DIR="./output/wan-style"
+TRAINING_DATASET_CONFIG="examples/training/sft/wan/v2v_animate/front-long-32/training.json"
+VALIDATION_DATASET_FILE="examples/training/sft/wan/v2v_animate/front-long-32/validation.json"
+OUTPUT_DIR="./output/wan-v2v_animate-front-long-32"
 
 # Depending on how many GPUs you have available, choose your degree of parallelism and technique!
 DDP_1="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 1 --dp_shards 1 --cp_degree 1 --tp_degree 1"
@@ -73,8 +73,8 @@ training_cmd=(
   --seed 42
   --batch_size 1
   --train_steps 6000
-  --rank 128
-  --lora_alpha 128
+  --rank 32
+  --lora_alpha 32
   --target_modules "blocks.*(to_q|to_k|to_v|to_out.0)"
   --gradient_accumulation_steps 1
   --gradient_checkpointing
@@ -83,7 +83,7 @@ training_cmd=(
   # --resume_from_checkpoint 3000
   # --enable_slicing
   --enable_tiling
-  --apply_target_noise_only "front"
+  --apply_target_noise_only "front-long"
 )
 
 # Optimizer arguments

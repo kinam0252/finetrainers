@@ -438,6 +438,9 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
         attention_kwargs: Optional[Dict[str, Any]] = None,
         apply_target_noise_only: str = None,
     ) -> Union[torch.Tensor, Dict[str, torch.Tensor]]:
+        if "none" in apply_target_noise_only:
+            apply_target_noise_only = None
+            
         if attention_kwargs is not None:
             attention_kwargs = attention_kwargs.copy()
             lora_scale = attention_kwargs.pop("scale", 1.0)
@@ -518,7 +521,7 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
                 hidden_states = block(
                     hidden_states=hidden_states,
                     encoder_hidden_states=encoder_hidden_states,
-                    temb=temb,
+                    temb=timestep_proj,
                     rotary_emb=rotary_emb,
                     apply_target_noise_only=apply_target_noise_only,
                     target_frame_mask=target_frame_mask,

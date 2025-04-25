@@ -15,12 +15,12 @@ BACKEND="ptd"
 
 # In this setting, I'm using 2 GPUs on a 4-GPU node for training
 NUM_GPUS=1
-CUDA_VISIBLE_DEVICES="7"
+CUDA_VISIBLE_DEVICES="3"
 
 # Check the JSON files for the expected JSON format
-TRAINING_DATASET_CONFIG="examples/training/sft/wan/style/training.json"
-VALIDATION_DATASET_FILE="examples/training/sft/wan/style/validation.json"
-OUTPUT_DIR="./output/wan-style"
+TRAINING_DATASET_CONFIG="examples/training/sft/wan/v2v_animate_14B/front-long-none/training.json"
+VALIDATION_DATASET_FILE="examples/training/sft/wan/v2v_animate_14B/front-long-none/validation.json"
+OUTPUT_DIR="./output/wan-v2v_animate-front-long-none-14B"
 
 # Depending on how many GPUs you have available, choose your degree of parallelism and technique!
 DDP_1="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 1 --dp_shards 1 --cp_degree 1 --tp_degree 1"
@@ -38,7 +38,7 @@ parallel_cmd=(
 # Model arguments
 model_cmd=(
   --model_name "wan"
-  --pretrained_model_name_or_path "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-1.3B-Diffusers"
+  --pretrained_model_name_or_path "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
 )
 
 # Dataset arguments
@@ -78,12 +78,12 @@ training_cmd=(
   --target_modules "blocks.*(to_q|to_k|to_v|to_out.0)"
   --gradient_accumulation_steps 1
   --gradient_checkpointing
-  --checkpointing_steps 1000
-  --checkpointing_limit 3
+  --checkpointing_steps 7000
+  --checkpointing_limit 1
   # --resume_from_checkpoint 3000
   # --enable_slicing
   --enable_tiling
-  --apply_target_noise_only "front"
+  --apply_target_noise_only "front-long-none"
 )
 
 # Optimizer arguments
