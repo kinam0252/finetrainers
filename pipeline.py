@@ -551,7 +551,7 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
                     )[0]
                     noise_pred = noise_uncond + guidance_scale * (noise_pred - noise_uncond)
 
-                if apply_target_noise_only == "front":
+                if apply_target_noise_only == "front" or apply_target_noise_only == "front-none":
                     noise_pred[:, :, 0] = 0
                 elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
                     noise_pred[:, :, :6] = 0

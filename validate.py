@@ -62,6 +62,8 @@ args = parse_args()
 
 @torch.no_grad()
 def process_video(pipe, video_path, dtype, generator, height, width, apply_target_noise_only):
+    if pipe.device == "cpu":
+        generator = None
     if apply_target_noise_only == None:
         return None
     from diffusers.utils import load_video
@@ -88,7 +90,7 @@ def process_video(pipe, video_path, dtype, generator, height, width, apply_targe
     if apply_target_noise_only == "back":
         print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
         init_latents[:, :, :-1] = noise[:, :, :-1]
-    elif apply_target_noise_only == "front":
+    elif apply_target_noise_only == "front" or apply_target_noise_only == "front-none":
         print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
         init_latents[:, :, 1:] = noise[:, :, 1:]
     elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
@@ -154,11 +156,12 @@ if __name__ == "__main__":
             from pipeline import WanPipeline
             from diffusers.utils import export_to_video
             from finetrainers.models.wan.model import WanTransformer3DModel
-            model_id = "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-1.3B-Diffusers"
+            model_id = "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
             vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
             pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
             pipe.transformer = WanTransformer3DModel.from_pretrained(model_id, subfolder="transformer", torch_dtype=torch.bfloat16)
             pipe.to("cuda")
+            # pipe.enable_model_cpu_offload()
             # pipe.vae.enable_tiling()
             # pipe.vae.enable_slicing()
             if args.lora_weight_path:

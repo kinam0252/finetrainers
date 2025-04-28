@@ -637,6 +637,12 @@ class SFTTrainer:
         # will hang indefinitely. Either pad the dataset or raise an error early on during initialization if the dataset
         # size is not divisible by dp_shards.
         self.transformer.eval()
+        if pipeline.vae.dtype == torch.bfloat16:
+            convert_dtype = True
+            pipeline.vae.to(dtype=torch.float32)
+        else:
+            convert_dtype = False
+            
         while True:
             validation_data = next(data_iterator, None)
             if validation_data is None:
@@ -648,7 +654,7 @@ class SFTTrainer:
 
             validation_data = validation_data[0]
             validation_artifacts = self.model_specification.validation(
-                pipeline=pipeline, generator=generator, **validation_data
+                pipeline=pipeline, generator=generator, apply_target_noise_only=self.args.apply_target_noise_only, **validation_data
             )
 
             PROMPT = validation_data["prompt"]
@@ -697,6 +703,9 @@ class SFTTrainer:
                     )
                     export_to_video(artifact.value, output_filename, fps=EXPORT_FPS)
                     all_processes_artifacts.append(wandb.Video(output_filename, caption=PROMPT))
+
+        if convert_dtype:
+            pipeline.vae.to(dtype=torch.bfloat16)
 
         # 3. Cleanup & log artifacts
         parallel_backend.wait_for_everyone()

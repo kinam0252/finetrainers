@@ -4,7 +4,7 @@ from typing import Type
 from .models import ModelSpecification
 from .models.cogvideox import CogVideoXModelSpecification
 from .models.cogview4 import CogView4ModelSpecification
-from .models.hunyuan_video import HunyuanVideoModelSpecification
+# from .models.hunyuan_video import HunyuanVideoModelSpecification
 from .models.ltx_video import LTXVideoModelSpecification
 from .models.wan import WanModelSpecification
 
@@ -31,10 +31,10 @@ SUPPORTED_MODEL_CONFIGS = {
         TrainingType.LORA: CogView4ModelSpecification,
         TrainingType.FULL_FINETUNE: CogView4ModelSpecification,
     },
-    ModelType.HUNYUAN_VIDEO: {
-        TrainingType.LORA: HunyuanVideoModelSpecification,
-        TrainingType.FULL_FINETUNE: HunyuanVideoModelSpecification,
-    },
+    # ModelType.HUNYUAN_VIDEO: {
+    #     TrainingType.LORA: HunyuanVideoModelSpecification,
+    #     TrainingType.FULL_FINETUNE: HunyuanVideoModelSpecification,
+    # },
     ModelType.LTX_VIDEO: {
         TrainingType.LORA: LTXVideoModelSpecification,
         TrainingType.FULL_FINETUNE: LTXVideoModelSpecification,

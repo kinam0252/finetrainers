@@ -438,7 +438,7 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
         attention_kwargs: Optional[Dict[str, Any]] = None,
         apply_target_noise_only: str = None,
     ) -> Union[torch.Tensor, Dict[str, torch.Tensor]]:
-        if "none" in apply_target_noise_only:
+        if apply_target_noise_only and "none" in apply_target_noise_only:
             apply_target_noise_only = None
             
         if attention_kwargs is not None:

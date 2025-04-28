@@ -15,12 +15,12 @@ BACKEND="ptd"
 
 # In this setting, I'm using 2 GPUs on a 4-GPU node for training
 NUM_GPUS=1
-CUDA_VISIBLE_DEVICES="1"
+CUDA_VISIBLE_DEVICES="0"
 
 # Check the JSON files for the expected JSON format
-TRAINING_DATASET_CONFIG="examples/training/sft/wan/v2v_animate_14B/front-long-none-32/training.json"
-VALIDATION_DATASET_FILE="examples/training/sft/wan/v2v_animate_14B/front-long-none-32/validation.json"
-OUTPUT_DIR="./output/wan-14B-v2v_animate-front-long-none-32"
+TRAINING_DATASET_CONFIG="examples/training/sft/hunyuan_video/_test/training.json"
+VALIDATION_DATASET_FILE="examples/training/sft/hunyuan_video/_test/validation.json"
+OUTPUT_DIR="./output/_test-hunyuan-NeRF-none"
 
 # Depending on how many GPUs you have available, choose your degree of parallelism and technique!
 DDP_1="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 1 --dp_shards 1 --cp_degree 1 --tp_degree 1"
@@ -29,29 +29,25 @@ DDP_4="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 4 --dp_shards 1 --c
 FSDP_2="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 1 --dp_shards 2 --cp_degree 1 --tp_degree 1"
 FSDP_4="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 1 --dp_shards 4 --cp_degree 1 --tp_degree 1"
 HSDP_2_2="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 2 --dp_shards 2 --cp_degree 1 --tp_degree 1"
+HSDP_4_2="--parallel_backend $BACKEND --pp_degree 1 --dp_degree 4 --dp_shards 2 --cp_degree 1 --tp_degree 1"
 
 # Parallel arguments
 parallel_cmd=(
-  $DDP_1
+  $HSDP_4_2
 )
 
 # Model arguments
 model_cmd=(
-  --model_name "wan"
-  --pretrained_model_name_or_path "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
+  --model_name "hunyuan_video"
+  --pretrained_model_name_or_path "/home/nas4_user/kinamkim/checkpoint/hunyuanvideo-community"
 )
 
 # Dataset arguments
-# Here, we know that the dataset size if about ~50 videos. Since we're using 2 GPUs, we precompute
-# embeddings of 25 dataset items per GPU. Also, we're using a very small dataset for finetuning, so
-# we are okay with precomputing embeddings once and re-using them without having to worry about disk
-# space. Currently, however, every new training run performs precomputation even if it's not required
-# (which is something we've to improve [TODO(aryan)])
 dataset_cmd=(
   --dataset_config $TRAINING_DATASET_CONFIG
   --dataset_shuffle_buffer_size 10
   --enable_precomputation
-  --precomputation_items 25
+  --precomputation_items 10
   --precomputation_once
 )
 
@@ -72,24 +68,24 @@ training_cmd=(
   --training_type "lora"
   --seed 42
   --batch_size 1
-  --train_steps 6000
+  --train_steps 3000
   --rank 32
   --lora_alpha 32
-  --target_modules "blocks.*(to_q|to_k|to_v|to_out.0)"
+  --target_modules "(transformer_blocks|single_transformer_blocks).*(to_q|to_k|to_v|to_out.0|add_q_proj|add_k_proj|add_v_proj|to_add_out)"
   --gradient_accumulation_steps 1
   --gradient_checkpointing
   --checkpointing_steps 1000
-  --checkpointing_limit 6
+  --checkpointing_limit 2
   # --resume_from_checkpoint 3000
   --enable_slicing
   --enable_tiling
-  --apply_target_noise_only "front-long-none"
+  --apply_target_noise_only "front"
 )
 
 # Optimizer arguments
 optimizer_cmd=(
   --optimizer "adamw"
-  --lr 5e-5
+  --lr 3e-5
   --lr_scheduler "constant_with_warmup"
   --lr_warmup_steps 1000
   --lr_num_cycles 1
@@ -103,12 +99,12 @@ optimizer_cmd=(
 # Validation arguments
 validation_cmd=(
   --validation_dataset_file "$VALIDATION_DATASET_FILE"
-  --validation_steps 7000
+  --validation_steps 1
 )
 
 # Miscellaneous arguments
 miscellaneous_cmd=(
-  --tracker_name "finetrainers-wan"
+  --tracker_name "finetrainers-hunyuanvideo"
   --output_dir "$OUTPUT_DIR"
   --init_timeout 600
   --nccl_timeout 600

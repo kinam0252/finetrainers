@@ -370,6 +370,7 @@ class BaseArgs:
     # Validation arguments
     validation_dataset_file: Optional[str] = None
     validation_steps: int = 500
+    validation_count: int = 1
     enable_model_cpu_offload: bool = False
 
     # Miscellaneous arguments
@@ -484,6 +485,7 @@ class BaseArgs:
         validation_arguments = {
             "validation_dataset_file": self.validation_dataset_file,
             "validation_steps": self.validation_steps,
+            "validation_count": self.validation_count,
             "enable_model_cpu_offload": self.enable_model_cpu_offload,
         }
         validation_arguments = get_non_null_items(validation_arguments)
@@ -699,6 +701,7 @@ def _add_optimizer_arguments(parser: argparse.ArgumentParser) -> None:
 def _add_validation_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--validation_dataset_file", type=str, default=None)
     parser.add_argument("--validation_steps", type=int, default=500)
+    parser.add_argument("--validation_count", type=int, default=1)
     parser.add_argument("--enable_model_cpu_offload", action="store_true")
 
 
@@ -819,6 +822,7 @@ def _map_to_args_type(args: Dict[str, Any]) -> BaseArgs:
     # Validation arguments
     result_args.validation_dataset_file = args.validation_dataset_file
     result_args.validation_steps = args.validation_steps
+    result_args.validation_count = args.validation_count
     result_args.enable_model_cpu_offload = args.enable_model_cpu_offload
 
     # Miscellaneous arguments

@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a top-down view of a plush toy into a dynamic and realistic video capturing gradual lateral and downward movement; [CONDITION] the condition image showcases a brown plush toy resembling a cartoonish mouse, viewed from a steep top-down angle. The figure features large rounded ears, big blue embroidered eyes, a prominent black nose, and an expressive smiling mouth with visible front teeth. Its fur appears soft and fluffy, with lighter patches on the belly, muzzle, and feet. The toy stands out against a solid black background, emphasizing its friendly design and cozy textures. [VIDEO] the video animates the plush mouse starting from a high overhead view. The camera gently sways from side to side while slowly descending, gradually revealing the soft fabric details, the vibrant embroidered features, and the roundness of its cuddly form. Subtle lighting enhances the texture and color contrasts, while the black background remains consistent to maintain focus on the toy’s playful and inviting character.",
+      "image_path": null,
+      "video_path": "/home/nas4_user/kinamkim/video-in-context-lora/dataset/NeRF/dataset_wan/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}
