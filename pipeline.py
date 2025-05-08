@@ -383,6 +383,7 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
         callback_on_step_end_tensor_inputs: List[str] = ["latents"],
         max_sequence_length: int = 512,
         apply_target_noise_only: Optional[str] = None,
+        init_latents: Optional[torch.Tensor] = None,
     ):
         r"""
         The call function to the pipeline for generation.
@@ -522,10 +523,24 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
         self._num_timesteps = len(timesteps)
         print(f"[pipeline] apply_target_noise_only: {apply_target_noise_only}")
+        if apply_target_noise_only == "front-4-noise-none":
+            timesteps = self.scheduler.timesteps # torch.Size([1000]), torch.float32, 999~0
+            scheduler = self.scheduler
+            n_timesteps = timesteps.shape[0]
+            #t_100 = timesteps[0]
+            t_25 = timesteps[int(n_timesteps * (1 - 0.25))]
+            t_50 = timesteps[int(n_timesteps * (1 - 0.5))]
+            t_75 = timesteps[int(n_timesteps * (1 - 0.75))]
+            
         with self.progress_bar(total=num_inference_steps) as progress_bar:
             for i, t in enumerate(timesteps):
                 if self.interrupt:
                     continue
+
+                if apply_target_noise_only == "front-4-sdedit-none":
+                    print(f"[DEBUG] replace noise : {apply_target_noise_only}")
+                    noise = randn_tensor(latents.shape, generator=generator, device=device, dtype=torch.float32)
+                    latents[:, :, :4] = self.scheduler.add_noise(init_latents[:, :, :4], noise[:, :, :4], torch.tensor([t]))
 
                 self._current_timestep = t
                 latent_model_input = latents.to(transformer_dtype)
@@ -555,7 +570,22 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
                     noise_pred[:, :, 0] = 0
                 elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
                     noise_pred[:, :, :6] = 0
-
+                elif apply_target_noise_only == "front-5" or apply_target_noise_only == "front-5-none":
+                    noise_pred[:, :, :5] = 0
+                elif apply_target_noise_only == "front-4-none":
+                    noise_pred[:, :, :4] = 0
+                elif apply_target_noise_only == "front-4-noise-none":
+                    noise_pred[:, :, 0] = 0
+                    if t > t_25:
+                        print(f"[DEBUG] not reached t_25")
+                        noise_pred[:, :, 1] = 0
+                    if t > t_50:
+                        print(f"[DEBUG] not reached t_50")
+                        noise_pred[:, :, 2] = 0
+                    if t > t_75:
+                        print(f"[DEBUG] not reached t_75")
+                        noise_pred[:, :, 3] = 0
+                        
                 # compute the previous noisy sample x_t -> x_t-1
                 latents = self.scheduler.step(noise_pred, t, latents, return_dict=False)[0]
 

@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a brown plush toy, viewed from a steep top-down angle, featuring large ears, blue embroidered eyes, a black nose, and a smiling mouth with front teeth, standing out against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and descending, gradually revealing the toy’s soft textures and playful details, while maintaining the black background to keep focus on its cozy appearance.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/dataset_FIFO/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a gray stone sculpture of two doves nestled closely together, viewed from a steep top-down angle, featuring carved feather textures, round eyes, and curving forms on a slightly rough matte surface, standing out against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and descending, gradually revealing the layered feathers, soft curves, and stone textures, while the black background stays consistent to emphasize the serene and harmonious design.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/dataset_FIFO/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a soft, light brown teddy bear with cream accents, viewed from a steep top-down angle, featuring a round head, shiny black eyes, a stitched smile, and a plump, evenly stuffed body, all set against a solid black background; then follows the [VIDEO]: the video starts from the same overhead view, with the camera gently swaying from side to side and slowly descending, gradually revealing the fuzzy surface, stitched details on the paws and belly, and the bear’s inviting expression, while soft lighting enhances the plush texture and the black background remains to maintain focus on the bear.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/dataset_FIFO/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a mature garlic bulb with a twisted, fibrous stem, viewed from a steep top-down angle, displaying delicate off-white skin with beige and purple hues and textured, papery layers, placed against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and slowly descending, gradually revealing the fine papery textures, segmented cloves beneath the skin, and the organic curves of the stem, while subtle lighting enhances the translucent quality of the layers and the black background stays consistent to emphasize the bulb’s intricate form.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/dataset_FIFO/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

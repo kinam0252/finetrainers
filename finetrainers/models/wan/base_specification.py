@@ -311,11 +311,62 @@ class WanModelSpecification(ModelSpecification):
         if apply_target_noise_only == "front" or apply_target_noise_only == "front-none":
             print("[DEBUG] front noise applied")
             noisy_latents[:, :, 0] = latents[:, :, 0]
+        elif apply_target_noise_only == "front-2" or apply_target_noise_only == "front-2-none":
+            print("[DEBUG] front-2 noise applied")
+            noisy_latents[:, :, :2] = latents[:, :, :2]
         elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
             print("[DEBUG] front-long noise applied")
             noisy_latents[:, :, :6] = latents[:, :, :6]
         elif apply_target_noise_only == "front-long-none-F81":
             noisy_latents[:, :, :10] = latents[:, :, :10]
+        elif apply_target_noise_only == "front-5" or apply_target_noise_only == "front-5-none":
+            print("[DEBUG] front-5 noise applied")
+            noisy_latents[:, :, :5] = latents[:, :, :5]
+        elif apply_target_noise_only == "front-4-noise-none":
+            print("[DEBUG] front-4-noise-none noise applied")
+            noisy_latents[:, :, 0] = latents[:, :, 0]
+            # Vectorized batch processing
+            mask_075 = (sigmas > 0.75).view(-1, 1, 1, 1, 1)
+            mask_050 = (sigmas > 0.5).view(-1, 1, 1, 1, 1)
+            mask_025 = (sigmas > 0.25).view(-1, 1, 1, 1, 1)
+            
+            noisy_latents_075 = FF.flow_match_xt(latents[:, :, 3:4], noise[:, :, 3:4], 0.75)
+            noisy_latents_050 = FF.flow_match_xt(latents[:, :, 2:3], noise[:, :, 2:3], 0.5)
+            noisy_latents_025 = FF.flow_match_xt(latents[:, :, 1:2], noise[:, :, 1:2], 0.25)
+            
+            noisy_latents[:, :, 3:4] = torch.where(mask_075, noisy_latents_075, noisy_latents[:, :, 3:4])
+            noisy_latents[:, :, 2:3] = torch.where(mask_050, noisy_latents_050, noisy_latents[:, :, 2:3])
+            noisy_latents[:, :, 1:2] = torch.where(mask_025, noisy_latents_025, noisy_latents[:, :, 1:2])
+        elif apply_target_noise_only == "front-4-noise-none-dual-cond":
+            print("[DEBUG] front-4-noise-none-dual-cond noise applied")
+            noisy_latents[:, :, :5] = latents[:, :, :5]
+            # Vectorized batch processing
+            mask_075 = (sigmas > 0.75).view(-1, 1, 1, 1, 1)
+            mask_050 = (sigmas > 0.5).view(-1, 1, 1, 1, 1)
+            mask_025 = (sigmas > 0.25).view(-1, 1, 1, 1, 1)
+            
+            noisy_latents_075 = FF.flow_match_xt(latents[:, :, 7:8], noise[:, :, 7:8], 0.75)
+            noisy_latents_050 = FF.flow_match_xt(latents[:, :, 6:7], noise[:, :, 6:7], 0.5)
+            noisy_latents_025 = FF.flow_match_xt(latents[:, :, 5:6], noise[:, :, 5:6], 0.25)
+            
+            noisy_latents[:, :, 7:8] = torch.where(mask_075, noisy_latents_075, noisy_latents[:, :, 7:8])
+            noisy_latents[:, :, 6:7] = torch.where(mask_050, noisy_latents_050, noisy_latents[:, :, 6:7])
+            noisy_latents[:, :, 5:6] = torch.where(mask_025, noisy_latents_025, noisy_latents[:, :, 5:6])
+        elif apply_target_noise_only == "front-7-noise-none":
+            print("[DEBUG] front-7-noise-none noise applied")
+            noisy_latents[:, :, :4] = latents[:, :, :4]
+            # Vectorized batch processing
+            mask_075 = (sigmas > 0.75).view(-1, 1, 1, 1, 1)
+            mask_050 = (sigmas > 0.5).view(-1, 1, 1, 1, 1)
+            mask_025 = (sigmas > 0.25).view(-1, 1, 1, 1, 1)
+            
+            noisy_latents_075 = FF.flow_match_xt(latents[:, :, 6:7], noise[:, :, 6:7], 0.75)
+            noisy_latents_050 = FF.flow_match_xt(latents[:, :, 5:6], noise[:, :, 5:6], 0.5)
+            noisy_latents_025 = FF.flow_match_xt(latents[:, :, 4:5], noise[:, :, 4:5], 0.25)
+            
+            noisy_latents[:, :, 6:7] = torch.where(mask_075, noisy_latents_075, noisy_latents[:, :, 6:7])
+            noisy_latents[:, :, 5:6] = torch.where(mask_050, noisy_latents_050, noisy_latents[:, :, 5:6])
+            noisy_latents[:, :, 4:5] = torch.where(mask_025, noisy_latents_025, noisy_latents[:, :, 4:5])
         else:
             print("[DEBUG] Default[Full] noise applied")
 
@@ -441,9 +492,57 @@ def process_video(pipe, video, dtype, generator, height, width, apply_target_noi
     elif apply_target_noise_only == "front" or apply_target_noise_only == "front-none":
         print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
         init_latents[:, :, 1:] = noise[:, :, 1:]
+    elif apply_target_noise_only == "front-2" or apply_target_noise_only == "front-2-none":
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        init_latents[:, :, 2:] = noise[:, :, 2:]
     elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
         print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
         init_latents[:, :, 6:] = noise[:, :, 6:]
+    elif apply_target_noise_only == "front-5" or apply_target_noise_only == "front-5-none":
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        init_latents[:, :, 5:] = noise[:, :, 5:]
+    elif apply_target_noise_only == "front-4-noise-none":
+        timesteps = pipe.scheduler.timesteps # torch.Size([1000]), torch.float32, 999~0
+        scheduler = pipe.scheduler
+        n_timesteps = timesteps.shape[0]
+        #t_100 = timesteps[0]
+        t_25 = timesteps[int(n_timesteps * (1 - 0.25))]
+        t_50 = timesteps[int(n_timesteps * (1 - 0.5))]
+        t_75 = timesteps[int(n_timesteps * (1 - 0.75))]
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        #init_latents[:, :, 0] = scheduler.add_noise(init_latents[:, :, 0], noise[:, :, 0], torch.tensor([t_100]))
+        init_latents[:, :, 1] = scheduler.add_noise(init_latents[:, :, 1], noise[:, :, 1], torch.tensor([t_25]))
+        init_latents[:, :, 2] = scheduler.add_noise(init_latents[:, :, 2], noise[:, :, 2], torch.tensor([t_50]))
+        init_latents[:, :, 3] = scheduler.add_noise(init_latents[:, :, 3], noise[:, :, 3], torch.tensor([t_75]))
+        init_latents[:, :, 4:] = noise[:, :, 4:]
+    elif apply_target_noise_only == "front-4-noise-none-dual-cond":
+        timesteps = pipe.scheduler.timesteps # torch.Size([1000]), torch.float32, 999~0
+        scheduler = pipe.scheduler
+        n_timesteps = timesteps.shape[0]
+        #t_100 = timesteps[0]
+        t_25 = timesteps[int(n_timesteps * (1 - 0.25))]
+        t_50 = timesteps[int(n_timesteps * (1 - 0.5))]
+        t_75 = timesteps[int(n_timesteps * (1 - 0.75))]
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        #init_latents[:, :, 0] = scheduler.add_noise(init_latents[:, :, 0], noise[:, :, 0], torch.tensor([t_100]))
+        init_latents[:, :, 5] = scheduler.add_noise(init_latents[:, :, 5], noise[:, :, 5], torch.tensor([t_25]))
+        init_latents[:, :, 6] = scheduler.add_noise(init_latents[:, :, 6], noise[:, :, 6], torch.tensor([t_50]))
+        init_latents[:, :, 7] = scheduler.add_noise(init_latents[:, :, 7], noise[:, :, 7], torch.tensor([t_75]))
+        init_latents[:, :, 8:] = noise[:, :, 8:]
+    elif apply_target_noise_only == "front-7-noise-none":
+        timesteps = pipe.scheduler.timesteps # torch.Size([1000]), torch.float32, 999~0
+        scheduler = pipe.scheduler
+        n_timesteps = timesteps.shape[0]
+        #t_100 = timesteps[0]
+        t_25 = timesteps[int(n_timesteps * (1 - 0.25))]
+        t_50 = timesteps[int(n_timesteps * (1 - 0.5))]
+        t_75 = timesteps[int(n_timesteps * (1 - 0.75))]
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        #init_latents[:, :, 0] = scheduler.add_noise(init_latents[:, :, 0], noise[:, :, 0], torch.tensor([t_100]))
+        init_latents[:, :, 4] = scheduler.add_noise(init_latents[:, :, 4], noise[:, :, 4], torch.tensor([t_25]))
+        init_latents[:, :, 5] = scheduler.add_noise(init_latents[:, :, 5], noise[:, :, 5], torch.tensor([t_50]))
+        init_latents[:, :, 6] = scheduler.add_noise(init_latents[:, :, 6], noise[:, :, 6], torch.tensor([t_75]))
+        init_latents[:, :, 7:] = noise[:, :, 7:]
     else:
         raise ValueError(f"apply_target_noise_only must be either 'back' or 'front', but got {apply_target_noise_only}")
     init_latents = init_latents.to(pipe.device)
@@ -566,6 +665,14 @@ def custom_call(
     num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
     self._num_timesteps = len(timesteps)
     print(f"[pipeline] apply_target_noise_only: {apply_target_noise_only}")
+    if apply_target_noise_only == "front-4-noise-none" or apply_target_noise_only == "front-4-noise-none-dual-cond" or apply_target_noise_only == "front-7-noise-none":
+        timesteps = self.scheduler.timesteps # torch.Size([1000]), torch.float32, 999~0
+        scheduler = self.scheduler
+        n_timesteps = timesteps.shape[0]
+        #t_100 = timesteps[0]
+        t_25 = timesteps[int(n_timesteps * (1 - 0.25))]
+        t_50 = timesteps[int(n_timesteps * (1 - 0.5))]
+        t_75 = timesteps[int(n_timesteps * (1 - 0.75))]
     with self.progress_bar(total=num_inference_steps) as progress_bar:
         for i, t in enumerate(timesteps):
             if self.interrupt:
@@ -599,7 +706,43 @@ def custom_call(
                 noise_pred[:, :, 0] = 0
             elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
                 noise_pred[:, :, :6] = 0
-
+            elif apply_target_noise_only == "front-2" or apply_target_noise_only == "front-2-none":
+                noise_pred[:, :, :2] = 0
+            elif apply_target_noise_only == "front-5" or apply_target_noise_only == "front-5-none":
+                noise_pred[:, :, :5] = 0
+            elif apply_target_noise_only == "front-4-noise-none":
+                noise_pred[:, :, 0] = 0
+                if t > t_25:
+                    print(f"[DEBUG] not reached t_25")
+                    noise_pred[:, :, 1] = 0
+                if t > t_50:
+                    print(f"[DEBUG] not reached t_50")
+                    noise_pred[:, :, 2] = 0
+                if t > t_75:
+                    print(f"[DEBUG] not reached t_75")
+                    noise_pred[:, :, 3] = 0
+            elif apply_target_noise_only == "front-4-noise-none-dual-cond":
+                noise_pred[:, :, :5] = 0
+                if t > t_25:
+                    print(f"[DEBUG] not reached t_25")
+                    noise_pred[:, :, 5] = 0
+                if t > t_50:
+                    print(f"[DEBUG] not reached t_50")
+                    noise_pred[:, :, 6] = 0
+                if t > t_75:
+                    print(f"[DEBUG] not reached t_75")
+                    noise_pred[:, :, 7] = 0
+            elif apply_target_noise_only == "front-7-noise-none":
+                noise_pred[:, :, :4] = 0
+                if t > t_25:
+                    print(f"[DEBUG] not reached t_25")
+                    noise_pred[:, :, 4] = 0
+                if t > t_50:
+                    print(f"[DEBUG] not reached t_50")
+                    noise_pred[:, :, 5] = 0
+                if t > t_75:
+                    print(f"[DEBUG] not reached t_75")
+                    noise_pred[:, :, 6] = 0
             # compute the previous noisy sample x_t -> x_t-1
             latents = self.scheduler.step(noise_pred, t, latents, return_dict=False)[0]
 

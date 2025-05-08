@@ -489,12 +489,20 @@ class WanTransformer3DModel(ModelMixin, ConfigMixin, PeftAdapterMixin, FromOrigi
                 print("apply_target_noise_only: front")
                 # 첫 번째 프레임 위치 식별
                 target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) == 0
+            elif apply_target_noise_only == "front-2":
+                print("apply_target_noise_only: front-2")
+                # 첫 번째 프레임 위치 식별
+                target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) < 2
             elif apply_target_noise_only == "front-long":
                 print("apply_target_noise_only: front-long")
                 # 첫 번째부터 6번째 프레임까지 위치 식별
                 target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) < 6
+            elif apply_target_noise_only == "front-5":
+                print("apply_target_noise_only: front-5")
+                # 첫 번째부터 5번째 프레임까지 위치 식별
+                target_frame_indices = torch.arange(post_patch_num_frames, device=hidden_states.device) < 5
             else:
-                raise ValueError(f"apply_target_noise_only must be either 'back', 'front', or 'front-long', but got {apply_target_noise_only}")
+                raise ValueError(f"apply_target_noise_only must be either 'back', 'front', 'front-long', or 'front-5', but got {apply_target_noise_only}")
                 
             target_frame_mask = target_frame_indices.view(1, -1, 1, 1, 1).expand(batch_size, -1, 1, height // self.config.patch_size[1], width // self.config.patch_size[2])
             target_frame_mask = target_frame_mask.reshape(batch_size, -1)  # 패치 임베딩 형태로 변환

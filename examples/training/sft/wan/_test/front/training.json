@@ -1,7 +1,7 @@
 {
   "datasets": [
     {
-      "data_root": "/home/nas4_user/kinamkim/video-in-context-lora/dataset/NeRF/dataset_wan",
+      "data_root": "/data/kinamkim/dataset/P2V/dataset",
       "dataset_type": "video",
       "id_token": "NeRF",
       "video_resolution_buckets": [

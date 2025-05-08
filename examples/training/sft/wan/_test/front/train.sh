@@ -15,7 +15,7 @@ BACKEND="ptd"
 
 # In this setting, I'm using 2 GPUs on a 4-GPU node for training
 NUM_GPUS=1
-CUDA_VISIBLE_DEVICES="2"
+CUDA_VISIBLE_DEVICES="3"
 
 # Check the JSON files for the expected JSON format
 TRAINING_DATASET_CONFIG="examples/training/sft/wan/_test/front/training.json"
@@ -38,7 +38,7 @@ parallel_cmd=(
 # Model arguments
 model_cmd=(
   --model_name "wan"
-  --pretrained_model_name_or_path "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-1.3B-Diffusers"
+  --pretrained_model_name_or_path "/data/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
 )
 
 # Dataset arguments
@@ -71,14 +71,14 @@ diffusion_cmd=(
 training_cmd=(
   --training_type "lora"
   --seed 42
-  --batch_size 1
+  --batch_size 2
   --train_steps 6000
   --rank 32
   --lora_alpha 32
   --target_modules "blocks.*(to_q|to_k|to_v|to_out.0)"
   --gradient_accumulation_steps 1
   --gradient_checkpointing
-  --checkpointing_steps 1000
+  --checkpointing_steps 6000
   --checkpointing_limit 1
   # --resume_from_checkpoint 3000
   --enable_slicing
@@ -103,7 +103,7 @@ optimizer_cmd=(
 # Validation arguments
 validation_cmd=(
   --validation_dataset_file "$VALIDATION_DATASET_FILE"
-  --validation_steps 100
+  --validation_steps 6000
 )
 
 # Miscellaneous arguments

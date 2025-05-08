@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "caption": "ANIMATE This animated clip begins with the [CONDITION]: the condition frame presents the profile of a cheerful cartoon-style blue bear with rounded features, large eyes, a friendly smile, and vibrant shading against a warm beige background evoking a classic storybook charm; then follows the [VIDEO]: the character is animated into a gentle forest scene, standing on a grassy riverbank with a fishing rod, swaying excitedly as the bobber bounces in the rippling water, while birds chirp and leaves rustle, creating a calm and cheerful atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip begins with the [CONDITION]: the condition frame presents the profile of a cheerful cartoon-style young boy with tousled red hair, expressive eyes, a freckled face, and a yellow shirt with a green vest against a warm beige background evoking a nostalgic storybook feel; then follows the [VIDEO]: the character is animated into a sunny orchard, happily picking apples with a basket in one arm and admiring a red apple in his hand, as leaves sway gently and birds chirp, creating a peaceful, warm atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip begins with the [CONDITION]: the condition frame presents the profile of a cheerful cartoon-style young buffalo with thick brown fur, curved yellow horns, a big friendly smile, wide eyes, and an upright posture against a warm orange background conveying a lively and playful presence; then follows the [VIDEO]: the character is animated inside a grand museum, wearing a red t-shirt and pointing excitedly at a large dinosaur skeleton behind glass, with wide curious eyes and an open mouth, as elegant stone columns and soft lighting enhance the sense of wonder and fascination.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset/videos/3.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

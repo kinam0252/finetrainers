@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "caption": "ANIMATE The video begins with a clear, high-resolution front-facing close-up of a cheerful cartoon-style blue bear character, centered on a plain colored background. The bear’s full face — including its rounded features, large expressive eyes, and friendly smile — is clearly visible and remains still for a single second. After holding this frame, the image smoothly slides to the left, transitioning naturally into a vivid animation where the same blue bear is standing on a grassy riverbank in a gentle forest, holding a fishing rod with both hands. The bobber bounces slightly in the rippling water as the bear sways with excitement, its eyes fixed on the river. Birds chirp softly and leaves rustle in the breeze, adding to the calm and cheerful atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/swip_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE The video begins with a clear, high-resolution front-facing close-up of a cheerful cartoon-style young boy character, centered on a plain colored background. The boy’s full face — including his tousled red hair, expressive eyes, freckled cheeks, and a yellow shirt with a green vest — is clearly visible and remains still for a single second. After holding this frame, the image smoothly slides to the left, transitioning naturally into a vivid animation where the same young boy is happily picking apples in a sunny orchard, holding a basket in one arm and admiring a red apple in his hand. Leaves sway gently in the breeze, birds chirp softly, and the overall atmosphere feels peaceful and warm.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/swip_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE The video begins with a clear, high-resolution front-facing close-up of a cheerful cartoon-style bat character, centered against a plain colored background. The bat’s full face — including its rounded features, large expressive eyes, wide friendly smile with a small fang, soft brown fur, and lighter chest — is clearly visible and remains still for a single second. Its large ears and slightly spread wings give it an alert yet endearing look. After holding this frame, the image smoothly slides to the left, transitioning naturally into a vivid animation where the same bat is fluttering joyfully in a cozy nighttime forest clearing under a glowing full moon. The bat does playful loops and glides gently between trees, occasionally landing on a branch and flapping its wings excitedly before taking off again. Crickets chirp softly and a gentle nighttime breeze rustles the leaves, creating a peaceful, whimsical atmosphere with smooth, expressive motion.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/swip_dataset/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE The video begins with a clear, high-resolution front-facing close-up of a cheerful cartoon-style wolf character, centered against a plain colored background. The wolf’s full face — including its rounded features, large expressive eyes, wide friendly smile with its tongue slightly out, soft gray fur, and lighter shades on its chest and face — is clearly visible and remains still for a single second. Its perked-up ears and lively expression give it an energetic and approachable look. After holding this frame, the image smoothly slides to the left, transitioning naturally into a vivid animation where the same wolf is joyfully bounding through tall grass in a sunny meadow, playfully chasing fluttering butterflies. The wolf occasionally pauses to tilt its head curiously as a butterfly lands on its nose. Birds sing brightly and the grass sways gently in the breeze, creating a vibrant and heartwarming atmosphere with smooth, lively animation.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/swip_dataset/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

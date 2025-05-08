@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a static character illustration into a lively and expressive animated figure; [CONDITION] the condition image showcases a cheerful cartoon-style blue bear with rounded features, large expressive eyes, a friendly smile, and simple, vibrant shading set against a warm beige background, giving off a classic storybook charm. [VIDEO] the video animates the bear into a gentle forest scene, where it stands on a grassy riverbank holding a fishing rod with both hands. The bobber bounces slightly in the rippling water as the bear sways with excitement, its eyes fixed on the river. Birds chirp softly and leaves rustle in the breeze, adding to the calm, cheerful atmosphere with smooth, natural animation.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset_FIFO/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a static character illustration into a lively and expressive animated figure; [CONDITION] the condition image showcases a cheerful cartoon-style young boy with tousled red hair, expressive eyes, and a friendly, freckled face. He wears a yellow shirt with a green vest, and the warm beige background gives the image a nostalgic, storybook feel. [VIDEO] the video animates the boy into a sunny orchard where he happily picks apples. He holds a full basket of red apples in one arm while admiring a single apple in his other hand with a joyful smile. The leaves sway gently in the breeze, and a few apples still hang from the branches. His movements are fluid and natural as he shifts his stance, and soft bird chirps enhance the peaceful, warm atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset_FIFO/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a static character illustration into a lively and expressive animated figure; [CONDITION] the condition frame presents a cheerful cartoon-style bat character in a front-facing close-up, with soft brown fur, large expressive eyes, a wide friendly smile showing a small fang, and a lighter-colored chest, set against a plain warm background; its rounded features, large ears, and slightly spread wings give it an alert yet endearing charm. Then follows the [VIDEO] the bat is animated into a cozy nighttime forest clearing under a glowing full moon, fluttering joyfully through the trees, doing playful loops, gliding softly, and briefly landing on a branch with excited wing flaps before taking off again, as crickets chirp and the breeze rustles the leaves, creating a peaceful, whimsical atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset_FIFO/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a static character illustration into a lively and expressive animated figure; [CONDITION] the condition frame showcases a cheerful cartoon-style wolf character in a front-facing close-up, with soft gray fur, large expressive eyes, a wide friendly smile with its tongue slightly out, and lighter patches on its chest and face, set against a plain warm background; its rounded features, perked-up ears, and lively expression give it an energetic and approachable feel. Then follows the [VIDEO] the wolf is animated into a sunny meadow, joyfully bounding through tall grass and playfully chasing fluttering butterflies, pausing now and then to curiously watch one land on its nose, as birds sing and the breeze gently moves the grass, creating a vibrant, heartwarming atmosphere.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/P2V/dataset_FIFO/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

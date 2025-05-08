@@ -62,8 +62,6 @@ args = parse_args()
 
 @torch.no_grad()
 def process_video(pipe, video_path, dtype, generator, height, width, apply_target_noise_only):
-    if pipe.device == "cpu":
-        generator = None
     if apply_target_noise_only == None:
         return None
     from diffusers.utils import load_video
@@ -96,6 +94,9 @@ def process_video(pipe, video_path, dtype, generator, height, width, apply_targe
     elif apply_target_noise_only == "front-long" or apply_target_noise_only == "front-long-none":
         print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
         init_latents[:, :, 6:] = noise[:, :, 6:]
+    elif apply_target_noise_only == "front-5" or apply_target_noise_only == "front-5-none":
+        print(f"[DEBUG] applied noise mode : {apply_target_noise_only}")
+        init_latents[:, :, 5:] = noise[:, :, 5:]
     else:
         raise ValueError(f"apply_target_noise_only must be either 'back' or 'front', but got {apply_target_noise_only}")
     init_latents = init_latents.to(pipe.device)
@@ -156,14 +157,12 @@ if __name__ == "__main__":
             from pipeline import WanPipeline
             from diffusers.utils import export_to_video
             from finetrainers.models.wan.model import WanTransformer3DModel
-            model_id = "/home/nas4_user/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
+            model_id = "/data/kinamkim/checkpoint/Wan2.1-T2V-14B-Diffusers"
             vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
             pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
             pipe.transformer = WanTransformer3DModel.from_pretrained(model_id, subfolder="transformer", torch_dtype=torch.bfloat16)
             pipe.to("cuda")
-            # pipe.enable_model_cpu_offload()
-            # pipe.vae.enable_tiling()
-            # pipe.vae.enable_slicing()
+
             if args.lora_weight_path:
                 pipe.load_lora_weights(args.lora_weight_path, adapter_name="wan-lora")
                 pipe.set_adapters(["wan-lora"], [0.75])
@@ -189,6 +188,9 @@ if __name__ == "__main__":
         generator = torch.Generator(device=pipe.device).manual_seed(args.seed)
         neg_prompt = "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards"
         for i, prompt in enumerate(prompts[:args.num_videos]):
+            predicted_num_elements = 10 * 1024**3 // 4
+            null_prompt_tensor = torch.empty(predicted_num_elements, dtype=torch.float32, device='cuda')
+            pipe.to("cuda")
             print(f"Generating video {i+1}: {prompt[:100]}...")
             video_path = os.path.join(video_dir, f"{i+1}.mp4")
             print(f"video_path: {video_path}")
@@ -206,6 +208,7 @@ if __name__ == "__main__":
             # front-long 구현해야됨됨
             if args.apply_target_noise_only == None:
                 init_latents = None
+            # pipe.enable_model_cpu_offload()
             video = pipe(prompt, 
                          negative_prompt=neg_prompt,
                          generator=generator, 

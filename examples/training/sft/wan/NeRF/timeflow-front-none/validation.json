@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a brown plush toy resembling a cartoonish mouse, viewed from a steep top-down angle, featuring large ears, blue embroidered eyes, a black nose, and a smiling mouth with front teeth, standing out against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and descending, gradually revealing the toy’s soft textures and playful details, while maintaining the black background to keep focus on its cozy appearance.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a gray stone sculpture of two doves nestled closely together, viewed from a steep top-down angle, featuring carved feather textures, round eyes, and curving forms on a slightly rough matte surface, standing out against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and descending, gradually revealing the layered feathers, soft curves, and stone textures, while the black background stays consistent to emphasize the serene and harmonious design.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "NeRF This animated clip begins with the [CONDITION]: the condition frame shows a golden sculpture of a seated animal figure, possibly a rabbit, viewed from a steep top-down angle, featuring a cross-legged meditative pose, detailed paws, a smooth rounded body, and a shiny metallic surface with rich golden highlights, set against a solid black background; then follows the [VIDEO]: the video starts from the same top view, with the camera gently swaying and descending, gradually revealing the curved shapes, serene posture, and gleaming surface, while the black background stays consistent to emphasize the sculpture's peaceful and radiant presence.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/NeRF/videos/3.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

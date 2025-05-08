@@ -67,6 +67,10 @@ def main():
         else:
             raise ValueError(f"Training type {args.training_type} not supported.")
 
+        # import torch
+        # predicted_num_elements = 10 * 1024**3 // 4
+        # null_prompt_tensor = torch.empty(predicted_num_elements, dtype=torch.float32, device='cuda')
+
         trainer.run()
 
     except KeyboardInterrupt:

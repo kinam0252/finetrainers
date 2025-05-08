@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; [IMAGE] A young woman is smiling while holding a drink and phone. She wears a dark blazer, white top, beige wide-leg pants, and black heels. [CONDITION] A beige knit sweater over a white inner shirt, black wide-leg jeans, and black shoes. She carries a backpack and holds a clipboard. [VIDEO] The woman is wearing the [CONDITION] outfit, standing straight while smiling and holding a clipboard with both hands.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_wan/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; [IMAGE] A woman stands confidently in a blush satin midi dress with spaghetti straps and a structured bodice, paired with open-toe beige heels, posed in front of a cream sofa. [CONDITION] A layered pastel outfit featuring a sheer pink long-sleeve top with a bow tie detail, a frilly white mini skirt, pink leg warmers, and white sneakers. [VIDEO] The woman is wearing the [CONDITION] outfit, with her arms slightly lifted and knees bent, playfully bouncing in place with a cheerful demeanor.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_wan/videos/50.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; [IMAGE] A woman stands against a soft beige wall, wearing a fitted sky blue knit top with short sleeves, an ivory mini skirt, and a matching blue bow headband, her hands relaxed by her sides and her expression calm. [CONDITION] A sleeveless ivory mini dress with a bow detail at the neckline, paired with ivory wedge heels featuring ankle ribbons. [VIDEO] The woman is wearing the [CONDITION] outfit and gently turns her upper body toward the camera with a soft smile, her posture elegant and balanced as she highlights the flow and charm of the new look.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_wan/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; [IMAGE] A woman stands in front of a beige wall, wearing a chocolate brown ribbed cardigan with black buttons, a black tiered mini skirt, and simple black flats, her expression gentle and her hands resting naturally at her sides. [CONDITION] A cropped brown ribbed cardigan with a V-neck and button front, paired with a high-waisted black mini skirt featuring a ruffled hem. [VIDEO] The woman is wearing the [CONDITION] outfit and softly shifts her weight from one leg to the other while keeping her gaze steady, showing off the texture and shape of the garments with subtle movement.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_wan/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

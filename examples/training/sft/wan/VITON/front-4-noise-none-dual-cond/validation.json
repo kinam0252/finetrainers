@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A young woman smiles brightly with her body slightly turned, wearing a sleeveless two-tone long dress over black wide-leg pants, black sandals, and holding a silver shoulder bag. Then comes the [CONDITION]: A dark gray fitted short-sleeved top, white wide-leg trousers, black heeled sandals, a black shoulder bag, and a pendant necklace. [VIDEO]: She now wears the [CONDITION] outfit, standing confidently with a slight sway and cheerful expression.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A woman stands indoors in warm light, wearing a cream knit sweater, dark indigo jeans, black flip-flops, and holding both a black handbag and a paper bag. Then comes the [CONDITION]: A beige blazer over a printed white tee, gray sweatshirt tied at the waist, black slacks, black slip-on sneakers, and a large black tote. [VIDEO]: She now wears the [CONDITION] outfit, sipping coffee with her gaze turned to the side.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A woman stands on wooden flooring in soft light, wearing a cropped black sports jersey with white numbers, baggy light blue jeans, black-and-white sneakers, and smiling with a double thumbs-up. Then comes the [CONDITION]: A sleeveless yellow asymmetrical dress with a ruffled hem, cream pointed heels, and a brown mini handbag. [VIDEO]: She now wears the [CONDITION] outfit, walking gracefully with one arm slightly raised, holding the bag, exuding elegance in a bright room.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/3.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A woman stands by a large window in a high-rise room, wearing an off-shoulder pink knit sweater, loose white jeans, pink-and-white sneakers, and holding a burgundy tote bag. Then comes the [CONDITION]: A charcoal off-shoulder sweater with thumbhole sleeves, black flared shorts, glossy knee-high boots, and a large black shoulder bag. [VIDEO]: She now wears the [CONDITION] outfit, walking confidently with a composed look, highlighting the sleek, contrasting textures.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/4.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A woman stands in a cozy bedroom with soft lighting, wearing a split red-and-white comic crop top, blue cargo jeans with flap pockets, and black-and-white sneakers, smiling and waving. Then comes the [CONDITION]: A cropped black graphic tee, low-rise moto-style wide-leg jeans with ribbed panels, black platform shoes, and layered silver jewelry. [VIDEO]: She now wears the [CONDITION] outfit, posing confidently with one hand on her waist as her necklace catches the light.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/5.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "VITON This animated clip demonstrates the transformation of the person in the [IMAGE] into the outfit described in the [CONDITION]; it begins with the [IMAGE]: A woman stands in a warmly lit living room, wearing a pink oversized T-shirt, soft pajama pants with blue patterns, and red character slippers, hands in her pockets and hair relaxed. Then comes the [CONDITION]: A light blue striped fitted blouse, charcoal pleated mini skirt, white loose socks, and chunky black platforms. [VIDEO]: She now wears the [CONDITION] outfit, swaying gently with a relaxed smile, brushing her hair back with a youthful charm.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/VITON/dataset_FIFO_small/validate_dataset/videos/6.mp4",
+      "num_inference_steps": 50,
+      "height": 768,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}

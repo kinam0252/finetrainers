@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a realistic scene into a vivid 3D animation; it begins with the [CONDITION]: A smiling young man in blue overalls and a cap paints a beige wall with a roller in a cozy room. Then comes the [VIDEO]: The same scene is reimagined in 3D with vibrant textures and lighting, capturing his pose and environment in animated form.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/V2V_animate/dataset_FIFO/validate_dataset/videos/1.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a realistic scene into a vivid 3D animation; it begins with the [CONDITION]: An elderly chef in a white uniform and hat rolls out pizza dough on a wooden counter in a warm brick kitchen. Then comes the [VIDEO]: The same chef and kitchen are reinterpreted in 3D with vivid animation textures and lighting.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/V2V_animate/dataset_FIFO/validate_dataset/videos/2.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a realistic scene into a vivid 3D animation; it begins with the [CONDITION]: A little girl in overalls spins joyfully in a sunlit field, arms outstretched as a kite flutters above her, her laughter mingling with rustling grass and distant birdsong. Then comes the [VIDEO]: The same radiant meadow moment is reimagined in 3D with vibrant textures and golden lighting.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/V2V_animate/dataset_FIFO/validate_dataset/videos/3.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    },
+    {
+      "caption": "ANIMATE This animated clip demonstrates the transformation of a realistic scene into a vivid 3D animation; it begins with the [CONDITION]: A young boy crouches beside a bubbling creek in a forest, watching a paper boat drift downstream as sunlight filters through the trees. Then comes the [VIDEO]: The serene forest scene is brought to life in 3D with lush textures and dappled animated lighting.",
+      "image_path": null,
+      "video_path": "/data/kinamkim/dataset/V2V_animate/dataset_FIFO/validate_dataset/videos/4.mp4",
+      "num_inference_steps": 50,
+      "height": 480,
+      "width": 480,
+      "num_frames": 49,
+      "export_fps": 10
+    }
+  ]
+}
